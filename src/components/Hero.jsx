@@ -83,7 +83,7 @@ const Hero = () => {
 
         <div className="hero-image-wrapper reveal-right" ref={imageRef}>
           <div className="image-border">
-            <img src="images/profil.jpg" alt="Portrait de Mouhamadou Moussa KEITA" className="hero-image" loading="lazy" />
+            <img src="/images/profil.jpg" alt="Portrait de Mouhamadou Moussa KEITA" className="hero-image" loading="lazy" />
           </div>
           <div className="floating-badge badge-1">
             <i className="fa-solid fa-list-check"></i>

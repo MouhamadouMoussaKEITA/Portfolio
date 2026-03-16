@@ -32,7 +32,7 @@ const About = () => {
         <div className="about-grid mt-5">
           <div className="about-image-wrapper">
             <div className="about-image-inner">
-              <img src="images/about-dev.jpg" alt="Illustration informatique" className="rounded-image" loading="lazy" />
+              <img src="/images/about-dev.jpg" alt="Illustration informatique" className="rounded-image" loading="lazy" />
               <div className="experience-card glass-card">
                 <span className="number">3+</span>
                 <span className="text">Années<br/>d'études</span>
