@@ -3,23 +3,11 @@ import React, { useState, useEffect } from 'react';
 const Header = ({ theme, toggleTheme }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
-  const [isHidden, setIsHidden] = useState(false);
-  const [lastScrollY, setLastScrollY] = useState(0);
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   useEffect(() => {
     const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      
-      // Hide/Show Header
-      if (currentScrollY > lastScrollY && currentScrollY > 100) {
-        setIsHidden(true);
-      } else {
-        setIsHidden(false);
-      }
-      setLastScrollY(currentScrollY);
-
       // Active Navigation Link
       const sections = ['home', 'about', 'projects', 'skills', 'contact'];
       for (const section of sections) {
@@ -36,38 +24,15 @@ const Header = ({ theme, toggleTheme }) => {
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [lastScrollY]);
+  }, []);
 
   return (
-    <header 
-      className="header glass-nav" 
-      id="header"
-      style={{ transform: isHidden ? 'translateY(-100%)' : 'translateY(0)', transition: 'transform 0.3s ease' }}
-    >
+    <header className="header glass-nav" id="header">
       <div className="container header-container">
         <a href="#home" className="logo" aria-label="Retour à l'accueil">
           <span className="logo-highlight">M</span>. KEITA
         </a>
         
-        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-          <button 
-            onClick={toggleTheme} 
-            className="theme-toggle-btn" 
-            aria-label="Basculer le thème clair/sombre"
-          >
-            {theme === 'dark' ? <i className="fa-solid fa-sun"></i> : <i className="fa-solid fa-moon"></i>}
-          </button>
-          
-          <button 
-            className={`menu-toggle ${isMenuOpen ? 'active' : ''}`} 
-            aria-label="Ouvrir le menu" 
-            aria-expanded={isMenuOpen} 
-            onClick={toggleMenu}
-          >
-            <span className="hamburger"></span>
-          </button>
-        </div>
-
         <nav className={`nav-menu ${isMenuOpen ? 'active' : ''}`}>
           <ul className="nav-list">
             <li>
@@ -87,6 +52,25 @@ const Header = ({ theme, toggleTheme }) => {
             </li>
           </ul>
         </nav>
+
+        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+          <button 
+            onClick={toggleTheme} 
+            className="theme-toggle-btn" 
+            aria-label="Basculer le thème clair/sombre"
+          >
+            {theme === 'dark' ? <i className="fa-solid fa-sun"></i> : <i className="fa-solid fa-moon"></i>}
+          </button>
+          
+          <button 
+            className={`menu-toggle ${isMenuOpen ? 'active' : ''}`} 
+            aria-label="Ouvrir le menu" 
+            aria-expanded={isMenuOpen} 
+            onClick={toggleMenu}
+          >
+            <span className="hamburger"></span>
+          </button>
+        </div>
       </div>
     </header>
   );
